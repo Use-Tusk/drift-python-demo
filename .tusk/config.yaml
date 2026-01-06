@@ -1,0 +1,23 @@
+service:
+    name: drift-python-demo
+    port: 3000
+    start:
+        command: python server.py
+    readiness_check:
+        command: curl -fsS http://localhost:3000/health
+        timeout: 30s
+        interval: 1s
+
+traces:
+    dir: .tusk/traces
+
+test_execution:
+    timeout: 30s
+
+recording:
+    sampling_rate: 1 # Record 100% of requests
+    export_spans: false # Don't export spans to cloud, export to .tusk/traces instead
+
+# Only recording traces locally, API url not needed
+# tusk_api:
+#     url: https://api.usetusk.ai
