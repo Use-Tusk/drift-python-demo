@@ -73,7 +73,7 @@ pip install -r requirements.txt
 **macOS/Linux:**
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/Use-Tusk/tusk-drift-cli/main/install.sh | sh
+curl -fsSL https://cli.usetusk.ai/install.sh | sh
 ```
 
 **Windows:**
