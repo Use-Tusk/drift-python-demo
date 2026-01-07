@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://github.com/Use-Tusk/drift-python-sdk/raw/master/images/tusk-banner.png" alt="Tusk Drift Banner">
+  <img src="https://github.com/Use-Tusk/drift-python-sdk/raw/main/images/tusk-banner.png" alt="Tusk Drift Banner">
 </p>
 
 <div align="center">
