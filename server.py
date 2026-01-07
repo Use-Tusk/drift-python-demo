@@ -6,6 +6,10 @@ app = Flask(__name__)
 PORT = 3000
 
 
+def convert_celsius_to_fahrenheit(celsius):
+    return (celsius * 9/5) + 32
+
+
 @app.route('/api/weather-activity', methods=['GET'])
 def weather_activity():
     """Get location from IP, weather, and activity recommendations"""
@@ -28,6 +32,8 @@ def weather_activity():
         )
         weather_response.raise_for_status()
         weather = weather_response.json()['current_weather']
+
+        weather['temperature'] = convert_celsius_to_fahrenheit(weather['temperature'])
 
         # Business logic: Recommend activity based on weather
         recommended_activity = 'Play a board game'
