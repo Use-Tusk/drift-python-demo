@@ -2,6 +2,9 @@ name: Tusk Drift API Tests
 
 on:
   pull_request:
+  push:
+    branches:
+      - main
 
 jobs:
   test:
@@ -23,4 +26,4 @@ jobs:
       - name: Run Tusk Drift API tests
         env:
           TUSK_API_KEY: ${{ secrets.TUSK_DRIFT_API_KEY }}
-        run: tusk run --cloud --ci --print --commit-sha=${{ github.sha }} --pr-number=${{ github.event.pull_request.number }} --branch=${{ github.event.pull_request.head.ref }}
+        run: tusk run --cloud --ci --print --validate-suite-if-default-branch --commit-sha=${{ github.sha }} --pr-number=${{ github.event.pull_request.number }} --branch=${{ github.event.pull_request.head.ref }}
