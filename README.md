@@ -51,9 +51,9 @@ Record from dev/production (at low sampling rates), and Cloud handles trace cura
 
 [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/Use-Tusk/drift-python-demo)
 
-Open this demo repo in a [new GitHub Codespace](https://codespaces.new/Use-Tusk/drift-python-demo). Wait 15 seconds for the setup script to automatically install the Tusk CLI and all dependencies.
+Open this demo repo in a [new GitHub Codespace](https://codespaces.new/Use-Tusk/drift-python-demo). Alternatively, you can clone the repo.
 
-Alternatively, you can clone the repo and install dependencies manually:
+Install the dependencies:
 
 ```bash
 # Clone the repository
@@ -69,9 +69,6 @@ pip install -r requirements.txt
 ```
 
 ### 2. Install Tusk CLI
-
-> [!NOTE]
-> Skip this step if you created a GitHub Codespace for this demo repo.
 
 **macOS/Linux:**
 
@@ -238,7 +235,7 @@ tusk run
 ### Use Tusk on Your Own Service
 
 1. **Initialize a service using the Tusk CLI**: Follow the [Tusk CLI quick start guide](https://github.com/Use-Tusk/tusk-drift-cli?tab=readme-ov-file#quick-start)
-2. **Install the Tusk Drift SDK**: Follow the [Python SDK setup guide](https://github.com/Use-Tusk/drift-python-sdk#installation)
+2. **Install the Tusk Drift SDK**: Follow the Python SDK setup guide (WIP)
 3. **Record traces**: Capture traffic locally or in dev/staging environments to let Tusk automatically create a test suite
 4. **Replay in CI**: Add `tusk run` to your test pipeline
 5. **Catch regressions**: Get notified via PR comments when API behavior changes
