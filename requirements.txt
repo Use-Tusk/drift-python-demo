@@ -1,4 +1,4 @@
 flask>=3.0.0
 python-dotenv>=1.0.0
 requests>=2.31.0
-tusk-drift-python-sdk[flask]>=0.1.4
+tusk-drift-python-sdk[flask]>=0.1.5
