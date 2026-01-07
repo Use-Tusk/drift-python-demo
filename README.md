@@ -51,9 +51,9 @@ Record from dev/production (at low sampling rates), and Cloud handles trace cura
 
 [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/Use-Tusk/drift-python-demo)
 
-Open this demo repo in a [new GitHub Codespace](https://codespaces.new/Use-Tusk/drift-python-demo). Alternatively, you can clone the repo.
+Open this demo repo in a [new GitHub Codespace](https://codespaces.new/Use-Tusk/drift-python-demo). Wait 15 seconds for the setup script to automatically install the Tusk CLI and all dependencies.
 
-Install the dependencies:
+Alternatively, you can clone the repo and install dependencies manually:
 
 ```bash
 # Clone the repository
@@ -69,6 +69,9 @@ pip install -r requirements.txt
 ```
 
 ### 2. Install Tusk CLI
+
+> [!NOTE]
+> Skip this step if you created a GitHub Codespace for this demo repo.
 
 **macOS/Linux:**
 
@@ -177,6 +180,7 @@ The CLI replays recorded traces against your service:
 - Detects deviations in API responses
 
 **Key Commands:**
+
 - `tusk init` - Initialize Tusk for a new service
 - `tusk list` - List available traces
 - `tusk run` - Replay local traces
@@ -249,7 +253,6 @@ Sign up at [usetusk.ai](https://usetusk.ai) to unlock:
 - Team collaboration features
 - PR integration with GitHub/GitLab
 
-
 ## FAQ
 
 ### Do I need to modify my application code?
@@ -272,15 +275,16 @@ Yes! Use a low sampling rate (e.g., 1-5%) to minimize overhead. Most teams start
 
 Tusk has built-in rules for dynamic fields. You can customize these in `.tusk/config.yaml` to handle application-specific dynamic data.
 
-
 ### How does this compare to traditional mocking?
 
 Traditional mocking requires:
+
 - Manual mock creation and maintenance
 - Keeping mocks in sync with real APIs
 - Guessing at edge cases
 
 Tusk Drift:
+
 - Automatically captures real API behavior
 - Updates tests based on actual traffic
 - Finds edge cases you didn't know existed
