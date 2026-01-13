@@ -167,7 +167,7 @@ def main():
     print('  POST /api/post                - Create post')
     print('  DELETE /api/post/<id>          - Delete post')
 
-    app.run(host='0.0.0.0', port=PORT)
+    app.run(host='127.0.0.1', port=PORT)
 
 
 if __name__ == '__main__':
