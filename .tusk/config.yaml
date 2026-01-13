@@ -17,12 +17,11 @@ test_execution:
 
 recording:
   sampling_rate: 1 # Record 100% of requests
-  export_spans: true # Export spans to cloud
+  export_spans: false # Export spans to cloud
   enable_env_var_recording: false
 
 tusk_api:
   url: https://use-tusk-dev.uc.r.appspot.com
-
 # Only recording traces locally, API url not needed
 # tusk_api:
 #     url: https://api.usetusk.ai
