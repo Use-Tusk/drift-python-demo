@@ -30,6 +30,7 @@ if [ -f "$HOME/.local/bin/tusk" ]; then
   INTERNAL_USERS="jy-tan sohil-kshirsagar sohankshirsagar marcel-tan podocarp"
   if [[ " $INTERNAL_USERS " =~ " $GITHUB_USER " ]]; then
     echo 'export TUSK_ANALYTICS_DISABLED=1' >> "$HOME/.bashrc"
+    echo 'export TUSK_ANALYTICS_DISABLED=1' >> "$HOME/.profile"
   fi
 else
   echo "❌ Tusk CLI binary not found at $HOME/.local/bin/tusk"
