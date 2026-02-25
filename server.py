@@ -100,11 +100,6 @@ def create_user():
 def get_post(post_id):
     """Get post with comments"""
     try:
-        # Note: These requests are made sequentially rather than with ThreadPoolExecutor
-        # because Python's contextvars (used by OpenTelemetry) don't propagate to thread
-        # pool workers, which breaks Tusk Drift trace recording.
-        # For concurrent patterns that work with Tusk Drift, see:
-        # https://github.com/Use-Tusk/drift-python-sdk/blob/main/docs/context-propagation.md
         post_response = requests.get(f'https://jsonplaceholder.typicode.com/posts/{post_id}')
         post_response.raise_for_status()
 
