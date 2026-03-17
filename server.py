@@ -7,6 +7,10 @@ app = Flask(__name__)
 PORT = 3000
 
 
+def convert_celsius_to_fahrenheit(celsius):
+    return (celsius * 9/5) + 32
+
+
 @app.route('/api/weather-activity', methods=['GET'])
 def weather_activity():
     """Get location from IP, weather, and activity recommendations"""
@@ -29,6 +33,8 @@ def weather_activity():
         )
         weather_response.raise_for_status()
         weather = weather_response.json()['current_weather']
+
+        weather['temperature'] = convert_celsius_to_fahrenheit(weather['temperature'])
 
         # Business logic: Recommend activity based on weather
         recommended_activity = 'Play a board game'
@@ -96,20 +102,18 @@ def create_user():
         return jsonify({'error': 'Failed to create user'}), 500
 
 
+def get_post_with_comments(post_id):
+    post_response = requests.get(f'https://jsonplaceholder.typicode.com/posts/{post_id}')
+    post_response.raise_for_status()
+    return {'post': post_response.json(), 'comments': []}
+
+
 @app.route('/api/post/<int:post_id>', methods=['GET'])
 def get_post(post_id):
     """Get post with comments"""
     try:
-        post_response = requests.get(f'https://jsonplaceholder.typicode.com/posts/{post_id}')
-        post_response.raise_for_status()
-
-        comments_response = requests.get(f'https://jsonplaceholder.typicode.com/posts/{post_id}/comments')
-        comments_response.raise_for_status()
-
-        return jsonify({
-            'post': post_response.json(),
-            'comments': comments_response.json()
-        })
+        result = get_post_with_comments(post_id)
+        return jsonify(result)
     except Exception as error:
         return jsonify({'error': 'Failed to fetch post data'}), 500
 
