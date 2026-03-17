@@ -25,3 +25,7 @@ tusk_api:
 # Only recording traces locally, API url not needed
 # tusk_api:
 #     url: https://api.usetusk.ai
+
+replay:
+  sandbox:
+    mode: strict
