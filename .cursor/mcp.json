@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "tusk-drift": {
+      "url": "https://use-tusk-dev.uc.r.appspot.com/api/drift-mcp",
+      "headers": {
+        "x-api-key": "tusk-1e287605ae3141c351cce108a8e9226d"
+      }
+    }
+  }
+}

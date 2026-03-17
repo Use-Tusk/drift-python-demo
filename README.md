@@ -215,7 +215,10 @@ This sets `TUSK_DRIFT_MODE=record` environment variable and starts the server.
 # Make some API calls
 curl http://localhost:3000/api/weather-activity
 curl http://localhost:3000/api/user/1
+curl -X POST http://localhost:3000/api/user
 curl http://localhost:3000/api/post/5
+curl -X POST http://localhost:3000/api/post -H "Content-Type: application/json" -d '{"title": "foo", "body": "bar", "userId": 1}'
+curl -X DELETE http://localhost:3000/api/post/5
 ```
 
 Wait a few seconds and then stop the server with `Ctrl+C`. Your newly recorded traces are now in `.tusk/traces/`!
