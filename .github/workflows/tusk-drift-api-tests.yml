@@ -25,7 +25,7 @@ jobs:
         run: pip install -r requirements.txt
 
       - name: Run Tusk Drift trace tests
-        uses: Use-Tusk/drift-action@v1
+        uses: Use-Tusk/drift-action@userns-mapping
         with:
           cache-key: ${{ runner.os }}-tusk-drift-${{ hashFiles('.tusk/config.yaml') }}
           api-key: ${{ secrets.TUSK_DRIFT_API_KEY }}
