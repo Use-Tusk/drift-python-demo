@@ -181,7 +181,7 @@ The CLI replays recorded traces against your service:
 
 **Key Commands:**
 
-- `tusk init` - Initialize Tusk for a new service
+- `tusk drift setup` - Set up Tusk for a new service
 - `tusk drift list` - List available traces
 - `tusk drift run` - Replay local traces
 
