@@ -1,6 +1,8 @@
---- server.py	2026-01-06 20:27:13
-+++ server.py	2026-01-06 20:32:16
-@@ -6,6 +6,10 @@
+diff --git c/server.py w/server.py
+index 06d208d..6304e07 100644
+--- c/server.py
++++ w/server.py
+@@ -7,6 +7,10 @@ app = Flask(__name__)
  PORT = 3000
  
  
@@ -11,7 +13,7 @@
  @app.route('/api/weather-activity', methods=['GET'])
  def weather_activity():
      """Get location from IP, weather, and activity recommendations"""
-@@ -29,6 +33,8 @@
+@@ -30,6 +34,8 @@ def weather_activity():
          weather_response.raise_for_status()
          weather = weather_response.json()['current_weather']
  
@@ -20,7 +22,7 @@
          # Business logic: Recommend activity based on weather
          recommended_activity = 'Play a board game'
          if weather['temperature'] > 40:
-@@ -95,31 +101,18 @@
+@@ -96,20 +102,18 @@ def create_user():
          return jsonify({'error': 'Failed to create user'}), 500
  
  
@@ -34,22 +36,11 @@
  def get_post(post_id):
      """Get post with comments"""
      try:
--        # Fetch post and comments in parallel using requests
--        import concurrent.futures
+-        post_response = requests.get(f'https://jsonplaceholder.typicode.com/posts/{post_id}')
+-        post_response.raise_for_status()
 -
--        with concurrent.futures.ThreadPoolExecutor(max_workers=2) as executor:
--            post_future = executor.submit(
--                requests.get, f'https://jsonplaceholder.typicode.com/posts/{post_id}'
--            )
--            comments_future = executor.submit(
--                requests.get, f'https://jsonplaceholder.typicode.com/posts/{post_id}/comments'
--            )
--
--            post_response = post_future.result()
--            comments_response = comments_future.result()
--
--            post_response.raise_for_status()
--            comments_response.raise_for_status()
+-        comments_response = requests.get(f'https://jsonplaceholder.typicode.com/posts/{post_id}/comments')
+-        comments_response.raise_for_status()
 -
 -        return jsonify({
 -            'post': post_response.json(),
