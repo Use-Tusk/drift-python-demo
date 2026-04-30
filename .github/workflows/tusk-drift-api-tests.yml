@@ -15,15 +15,14 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.12'
+          python-version: "3.12"
 
       - name: Install dependencies
         run: pip install -r requirements.txt
 
-      - name: Install Tusk CLI
-        run: curl -fsSL https://cli.usetusk.ai/install.sh | sh
-
       - name: Run Tusk Drift API tests
-        env:
-          TUSK_API_KEY: ${{ secrets.TUSK_DRIFT_API_KEY }}
-        run: tusk run --cloud --ci --print --validate-suite-if-default-branch --commit-sha=${{ github.sha }} --pr-number=${{ github.event.pull_request.number }} --branch=${{ github.event.pull_request.head.ref }}
+        uses: Use-Tusk/drift-action@v1
+        with:
+          working-directory: .
+          cache-key: ${{ runner.os }}-tusk-drift-${{ hashFiles('.tusk/config.yaml') }}
+          api-key: ${{ secrets.TUSK_DRIFT_API_KEY }}

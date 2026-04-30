@@ -30,13 +30,13 @@ Both use the same open-source CLI and SDK. This demo shows the **standalone work
 
 ### Standalone
 
-Record traces locally, save them to `.tusk/traces/`, and replay with `tusk run`. You manage which traces to keep.
+Record traces locally, save them to `.tusk/traces/`, and replay with `tusk drift run`. You manage which traces to keep.
 
 **Saves time vs. writing API tests manually.**
 
 ### With Tusk Cloud
 
-Record from dev/production (at low sampling rates), and Cloud handles trace curation automatically. When you run `tusk run` in CI, it pulls your curated suite from Cloud and reports results. If tests fail, you get PR comments showing what changed and suggested fixes.
+Record from dev/production (at low sampling rates), and Cloud handles trace curation automatically. When you run `tusk drift run` in CI, it pulls your curated suite from Cloud and reports results. If tests fail, you get PR comments showing what changed and suggested fixes.
 
 **A self-maintaining API test suite based on actual traffic.**
 
@@ -81,9 +81,9 @@ curl -fsSL https://cli.usetusk.ai/install.sh | sh
 
 **Windows:**
 
-Download the latest release from [Tusk CLI Releases](https://github.com/Use-Tusk/tusk-drift-cli/releases/latest)
+Download the latest release from [Tusk CLI Releases](https://github.com/Use-Tusk/tusk-cli/releases/latest)
 
-Full installation guide: [Tusk CLI Installation](https://github.com/Use-Tusk/tusk-drift-cli?tab=readme-ov-file#install)
+Full installation guide: [Tusk CLI Installation](https://github.com/Use-Tusk/tusk-cli?tab=readme-ov-file#install)
 
 ### 3. Run the Tests
 
@@ -91,7 +91,7 @@ This repository includes **pre-recorded test traces** from real API traffic (in 
 
 ```bash
 # Run all pre-recorded API tests
-tusk run
+tusk drift run
 ```
 
 You should see output showing tests running against the Flask server with deterministic mocks.
@@ -108,7 +108,7 @@ This demo repo includes:
 - **Pre-recorded Traces** (`.tusk/traces/`) - Real API call recordings in JSONL format
 - **Tusk Configuration** (`.tusk/config.yaml`) - Service configuration for test replay
 
-When you run `tusk run`, the CLI:
+When you run `tusk drift run`, the CLI:
 
 1. Starts your Flask server (using configuration in `.tusk/config.yaml`)
 2. Replays the recorded inbound HTTP requests
@@ -122,7 +122,7 @@ Want to see Tusk catch a bug? Open this [new codespace](https://codespaces.new/U
 
 ```bash
 git checkout buggy-branch
-tusk run
+tusk drift run
 ```
 
 This branch introduces a subtle bug by converting the temperature from Celsius to Fahrenheit without updating the temperature thresholds used to determine activity recommendations.
@@ -181,9 +181,12 @@ The CLI replays recorded traces against your service:
 
 **Key Commands:**
 
-- `tusk init` - Initialize Tusk for a new service
-- `tusk list` - List available traces
-- `tusk run` - Replay local traces
+- `tusk drift setup` - Set up Tusk for a new service
+- `tusk drift list` - List available traces
+- `tusk drift run` - Replay local traces
+
+> [!NOTE]
+> During replay, Tusk normally starts your service in a [Fence](https://github.com/Use-Tusk/fence) sandbox so tests use recorded responses instead of live outbound calls. This demo sets `replay.sandbox.mode: off` in `.tusk/config.yaml` because GitHub Codespaces/devcontainers may block the Linux sandbox; your own app still defaults to strict sandboxing unless you override it.
 
 ### 3. **Tusk Cloud** (Optional)
 
@@ -225,23 +228,23 @@ Wait a few seconds and then stop the server with `Ctrl+C`. Your newly recorded t
 View the newly recorded tests:
 
 ```bash
-tusk list
+tusk drift list
 ```
 
 Replay the tests:
 
 ```bash
-tusk run
+tusk drift run
 ```
 
 ## Next Steps
 
 ### Use Tusk on Your Own Service
 
-1. **Initialize a service using the Tusk CLI**: Follow the [Tusk CLI quick start guide](https://github.com/Use-Tusk/tusk-drift-cli?tab=readme-ov-file#quick-start)
+1. **Initialize a service using the Tusk CLI**: Follow the [Tusk CLI quick start guide](https://github.com/Use-Tusk/tusk-cli/blob/main/docs/drift/README.md#quick-start)
 2. **Install the Tusk Drift SDK**: Follow the Python SDK setup guide (WIP)
 3. **Record traces**: Capture traffic locally or in dev/staging environments to let Tusk automatically create a test suite
-4. **Replay in CI**: Add `tusk run` to your test pipeline
+4. **Replay in CI**: Add `tusk drift run` to your test pipeline
 5. **Catch regressions**: Get notified via PR comments when API behavior changes
 
 ### Try Tusk Cloud
@@ -291,7 +294,7 @@ Tusk Drift:
 
 ## Resources
 
-- [Tusk CLI Repository](https://github.com/Use-Tusk/tusk-drift-cli)
+- [Tusk CLI Repository](https://github.com/Use-Tusk/tusk-cli)
 - [Python SDK Repository](https://github.com/Use-Tusk/drift-python-sdk)
 - [Documentation](https://docs.usetusk.ai)
 
@@ -306,7 +309,5 @@ Questions? Reach out:
 - 📧 Email: [support@usetusk.ai](mailto:support@usetusk.ai)
 - 🐛 Issues: [GitHub Issues](https://github.com/Use-Tusk/drift-python-demo/issues)
 - 𝕏 Twitter: [@usetusk](https://twitter.com/usetusk)
-
----
 
 **Ready to catch bugs before production?** [Get started with Tusk Drift →](https://github.com/Use-Tusk/drift-python-sdk)

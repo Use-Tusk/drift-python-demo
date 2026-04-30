@@ -13,7 +13,7 @@ pip install --user -r requirements.txt
 
 # Install Tusk CLI
 echo "🔧 Installing Tusk CLI..."
-curl -fsSL https://raw.githubusercontent.com/Use-Tusk/tusk-drift-cli/main/install.sh | sh
+curl -fsSL https://raw.githubusercontent.com/Use-Tusk/tusk-cli/main/install.sh | sh
 
 # Explicitly add Tusk to PATH (the installer installs to ~/.local/bin)
 export PATH="$HOME/.local/bin:$PATH"
@@ -42,8 +42,8 @@ echo ""
 echo "✅ Setup complete!"
 echo ""
 echo "📚 Quick Start Guide:"
-echo "  1. Run pre-recorded tests:      tusk run"
-echo "  2. See Tusk CLI commands:       tusk --help"
+echo "  1. Run pre-recorded tests:      tusk drift run"
+echo "  2. See Tusk CLI commands:       tusk drift --help"
 echo "  3. Start server in record mode: TUSK_DRIFT_MODE=record python server.py"
 echo "  4. Check out buggy branch:      git checkout buggy-branch"
 echo ""
